@@ -1,7 +1,9 @@
+-- USE THIS SCRIPT WHEN THE SELECT INCLUDES THE *
 -- Descripción: Consulta registros de ORDENES_PAGO con filtro por NUMERO_FACTURA y muestra columnas seleccionadas.
 SET SERVEROUTPUT ON SIZE UNLIMITED;
 
 DECLARE
+  -- TYPE DECLARATION
   TYPE ordenes_pago_tab IS TABLE OF ORDENES_PAGO%ROWTYPE;
   v_rows ordenes_pago_tab;
 BEGIN
