@@ -1,5 +1,6 @@
+[QUERY SELECT *] SQL script example
 -- USE THIS SCRIPT WHEN THE SELECT INCLUDES THE *
--- Descripción: Consulta registros de ORDENES_PAGO con filtro por NUMERO_FACTURA y muestra columnas seleccionadas.
+-- DescripciÃ³n: Consulta registros de ORDENES_PAGO con filtro por NUMERO_FACTURA y muestra columnas seleccionadas.
 SET SERVEROUTPUT ON SIZE UNLIMITED;
 
 DECLARE
