@@ -1,5 +1,6 @@
+[QUERY USING RECORD] SQL script example
 -- USE THIS SCRIPT WHEN THE SELECT INCLUDES THE COLUMN NAMES INSTEAD OF *
--- Descripción: Este script consulta el historico de tarifas para el año 2023.
+-- DescripciÃ³n: Este script consulta el historico de tarifas para el aÃ±o 2023.
 SET SERVEROUTPUT ON SIZE UNLIMITED;  -- Obligatorio para visualizar la salida
  
 DECLARE    
