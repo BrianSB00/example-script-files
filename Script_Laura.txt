@@ -3,7 +3,9 @@ SET SERVEROUTPUT ON SIZE UNLIMITED;
 DECLARE
     CURSOR c_table_name IS
         SELECT 
-            [ALL_COLUMNS_WITH_PROPER_FORMATTING]
+            NVL(column1, 0) AS column1,
+            NVL(column2, ' ') AS column2,
+            TO_CHAR(date_column, 'YYYY-MM-DD HH24:MI:SS') AS date_column
         FROM TABLE_NAME
         WHERE [EXACT_WHERE_CONDITIONS]
         AND ROWNUM <= 10;
@@ -12,7 +14,9 @@ BEGIN
     
     FOR l_record in c_table_name LOOP 
         DBMS_OUTPUT.PUT_LINE(
-            [FORMATTED_COLUMN_VALUES_SEPARATED_BY_^]
+            l_record.column1 || '^' ||
+            l_record.column2 || '^' ||
+            NVL(TO_CHAR(l_record.date_column, 'YYYY-MM-DD HH24:MI:SS'), ' ') || '^'
         );
     END LOOP;
  
