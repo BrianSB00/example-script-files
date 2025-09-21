@@ -1,22 +1,22 @@
 SET SERVEROUTPUT ON SIZE UNLIMITED;
 
 DECLARE
-    CURSOR c_table_name IS
+    CURSOR c_join_table IS
         SELECT 
-            NVL(column1, 0) AS column1,
-            NVL(column2, ' ') AS column2,
-            TO_CHAR(date_column, 'YYYY-MM-DD HH24:MI:SS') AS date_column
-        FROM TABLE_NAME
+            -- Include columns based on user's SELECT clause
+            NVL(table_alias.column1, 0) AS column1,
+            NVL(table_alias.column2, ' ') AS column2
+            -- ... include all columns as determined by parsing SELECT clause
+        FROM table1 table_alias1
+        [PRESERVE_USER_JOIN_SYNTAX_EXACTLY]
         WHERE [EXACT_WHERE_CONDITIONS]
         AND ROWNUM <= 10;
 BEGIN
-    DBMS_OUTPUT.PUT_LINE('[COLUMN_NAMES_SEPARATED_BY_^]');
+    DBMS_OUTPUT.PUT_LINE('[ALL_SELECTED_COLUMNS_SEPARATED_BY_^]');
     
-    FOR l_record in c_table_name LOOP 
+    FOR l_record in c_join_table LOOP 
         DBMS_OUTPUT.PUT_LINE(
-            l_record.column1 || '^' ||
-            l_record.column2 || '^' ||
-            NVL(TO_CHAR(l_record.date_column, 'YYYY-MM-DD HH24:MI:SS'), ' ') || '^'
+            [ALL_FORMATTED_COLUMN_VALUES_SEPARATED_BY_^]
         );
     END LOOP;
  
